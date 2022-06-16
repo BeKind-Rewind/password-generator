@@ -17,9 +17,6 @@ function shuffle(array) {
 // User input
 function userInput() {
     console.log("userInput");
-// setting the length
-    // function getLength() { // ref l.51;stuck on line 21, never reading this function
-    //     console.log("get length");
         var passwordLength = window.prompt("How many characters in your password (8 - 128 )");
         if (passwordLength < 8) {
             alert("Password must be at least 8 characters!");
@@ -43,7 +40,6 @@ function userInput() {
         }
         console.log(userChoices);
         return userChoices;
-    // }
 }
 
 
