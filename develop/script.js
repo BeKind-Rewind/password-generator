@@ -28,11 +28,11 @@ function userInput() {
             return;
         }
 
-        // window prompts for boolean "yes" or "no" for each char type
-        var confirmUpperCase = window.prompt("Would you like Upper Case characters?")
-        var confirmLowerCase = window.prompt("Would you like Lower Case characters?")
-        var confirmNumber = window.prompt("Would you like Numbers?")
-        var confirmSpecial = window.prompt("Would you like Special characters?")
+        // window prompts for boolean "OK" or "CANCEL" for each char type
+        var confirmUpperCase = confirm("Would you like Upper Case characters?")
+        var confirmLowerCase = confirm("Would you like Lower Case characters?")
+        var confirmNumber = confirm("Would you like Numbers?")
+        var confirmSpecial = confirm("Would you like Special characters?")
 
         var userChoices = {
             passwordLength: passwordLength,
@@ -41,6 +41,13 @@ function userInput() {
             confirmNumber: confirmNumber,
             confirmSpecial: confirmSpecial
         }
+
+        if (confirmUpperCase + confirmLowerCase + confirmNumber + confirmSpecial === 0 ) {
+            alert("You must choose at least one character type!");
+            console.log("no char type!")
+            return;
+        }
+
         console.log(userChoices);
         return userChoices;
 }
@@ -55,19 +62,29 @@ function randomPassword() {
     if (userChoices.confirmUpperCase) {
         anyArray = anyArray.concat(upperCase);
         anyArray.push(shuffle(upperCase));
+    } 
+    else {
+        console.log("No upper case.");
     }
     if (userChoices.confirmLowerCase) {
         anyArray = anyArray.concat(lowerCase);
         anyArray.push(shuffle(lowerCase));
+    } else {
+        console.log("No lower case.")
     }
     if (userChoices.confirmNumber) {
         anyArray = anyArray.concat(number);
         anyArray.push(shuffle(number));
+    } else {
+        console.log("No numbers.")
     }
     if (userChoices.confirmSpecial) {
         anyArray = anyArray.concat(special);
         anyArray.push(shuffle(special));
+    } else {
+        console.log("No special characters.")
     }
+    
     // for loop that creates the password using user's choices
     for (var i= 0; i < userChoices.passwordLength; i++) {
         var maybeArray = shuffle(anyArray);
