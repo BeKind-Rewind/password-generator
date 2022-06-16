@@ -6,22 +6,23 @@ var special = ["~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", 
 var totalArray = [];
 var passwordArray = [];
 
-
+// shuffle the items in the arrays
 function shuffle(array) {
     var randomIndex = Math.floor(Math.random() * array.length);
     var convertElement = array[randomIndex];
+    console.log("shuffled");
     return convertElement;
-    console.log("shuffle");
 }
 
 // User input
 function userInput() {
-    console.log("userInput");
+    console.log("userInput")
+        // user sets length
         var passwordLength = window.prompt("How many characters in your password (8 - 128 )");
         if (passwordLength < 8) {
             alert("Password must be at least 8 characters!");
             return;
-        } 
+        }
         if (passwordLength >128) {
             alert("Password must be less than 128 characters!");
             return;
@@ -83,9 +84,9 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
   
   passwordText.value = password;
-console.log("this is dumb")
+console.log("write password")
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-console.log("this is awesome")
+console.log("click button ready")
