@@ -7,65 +7,84 @@ var totalArray = [];
 var passwordArray = [];
 
 
+function shuffle(array) {
+    var randomIndex = Math.floor(Math.random() * array.length);
+    var convertElement = array[randomIndex];
+    return convertElement
+}
 
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
-
+// User input
+function userInput() {
 // setting the length
-function getLength() {
-    var numCharacters = window.prompt("How many characters in your password (8 - 128 )");
-    if (numCharacter < 128 && numCharacters > 8) {
-        return numCharacters;
-    } else {
-        getLength();
+    function getLength() {
+        var numCharacters = window.prompt("How many characters in your password (8 - 128 )");
+        if (passwordLength < 8) {
+            alert("Password must be at least 8 characters!");
+            return;
+        } 
+        if (passwordLength >128) {
+            alert("Password must be less than 128 characters!");
+            return;
+        }
+        var confirmUpperCase = window.prompt("Would you like Upper Case characters?")
+        var confirmLowerCase = window.prompt("Would you like Lower Case characters?")
+        var confirmNumber = window.prompt("Would you like Numbers?")
+        var confirmSpecial = window.prompt("Would you like Special characters?")
+
+        var userChoices = {
+            passwordLength: passwordLength,
+            confirmUpperCase: confirmUpperCase,
+            confirmLowerCase: confirmLowerCase,
+            confirmNumer: confirmNumber,
+            confirmSpecial: confirmSpecial
+        }
+        console.log(userChoices)
+        return(userChoices)
     }
 }
 
-var numCharacters = getLength();
-console.log(numCharacters); //shows as undefined if not within range
+function randomPassword() {
+    var userChoices = userInput();
+    var newPassword = [];
+    var anyArray = [];
 
-// upper case
-var selectUpper = window.confirm("Upper Case?");
-if (selectUpper) {
-    totalArray = totalArray.concat(upperCase);
-} 
+    if (userChoices.confirmUpperCase) {
+        anyArray = anyArray.concat(upperCase);
+        anyArray.push(shuffle(upperCase));
+    }
+    if (userChoices.confirmLowerCase) {
+        anyArray = anyArray.concat(lowerCase);
+        anyArray.push(shuffle(lowerCase));
+    }
+    if (userChoices.confirmNumber) {
+        anyArray = anyArray.concat(number);
+        anyArray.push(shuffle(number));
+    }
+    if (userChoices.confirmSpecial) {
+        anyArray = anyArray.concat(special);
+        anyArray.push(shuffle(special));
+    }
 
+    for (var i= 0; i < userChoices.passwordLength; i++) {
+        var maybeArray = shuffle(anyArray);
+        newPassword.push(maybeArray);
+    }
 
-// lower case
-var selectLower = window.confirm("Lower Case?");
-if (selectLower) {
-    totalArray = totalArray.concat(lowerCase);
-} 
-
-
-// number
-var selectNumber = window.confirm("Number Case?");
-if (selectNumber) {
-    totalArray = totalArray.concat(number);
-} 
-
-// special
-var selectSpecial = window.confirm("Special?");
-if (selectSpecial) {
-    totalArray = totalArray.concat(special);
-} 
-
-
-//Random Number Generator
-randomNum = totalArray.length;
-for (let i = 0; i < numCharacters; i++) {
-    passwordArray = passwordArray.concat.totalArray[Math.floor(Math.random()*randomNum)];
+    console.log(newPassword);
+    return newPassword.join("");
 }
 
+var generateBtn = document.querySelector("#generate")
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = randomPassword();
   var passwordText = document.querySelector("#password");
-
+  
   passwordText.value = password;
-
+console.log("this is dumb")
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+console.log("this is awesome")
