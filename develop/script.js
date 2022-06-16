@@ -27,6 +27,8 @@ function userInput() {
             alert("Password must be less than 128 characters!");
             return;
         }
+
+        // window prompts for boolean "yes" or "no" for each char type
         var confirmUpperCase = window.prompt("Would you like Upper Case characters?")
         var confirmLowerCase = window.prompt("Would you like Lower Case characters?")
         var confirmNumber = window.prompt("Would you like Numbers?")
@@ -36,14 +38,14 @@ function userInput() {
             passwordLength: passwordLength,
             confirmUpperCase: confirmUpperCase,
             confirmLowerCase: confirmLowerCase,
-            confirmNumer: confirmNumber,
+            confirmNumber: confirmNumber,
             confirmSpecial: confirmSpecial
         }
         console.log(userChoices);
         return userChoices;
 }
 
-
+// randomize password using arrays based on user's input 
 function randomPassword() {
     var userChoices = userInput();
     console.log("function randomPassword, userInput");
@@ -66,19 +68,19 @@ function randomPassword() {
         anyArray = anyArray.concat(special);
         anyArray.push(shuffle(special));
     }
-
+    // for loop that creates the password using user's choices
     for (var i= 0; i < userChoices.passwordLength; i++) {
         var maybeArray = shuffle(anyArray);
         newPassword.push(maybeArray);
     }
-
+    // *still needs logic for each type if false
     console.log(newPassword);
     return newPassword.join("");
 }
 
 var generateBtn = document.querySelector("#generate")
 
-// Write password to the #password input
+// takes randomized password and writes in textarea
 function writePassword() {
   var password = randomPassword();
   var passwordText = document.querySelector("#password");
