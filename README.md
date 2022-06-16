@@ -27,6 +27,11 @@ I worked with Alli Brodine and Ahmad Hanif on setting up the steps and possible 
 
 Now that I have found basic functionality in the easiest code run, I need to come back and add the "false" logic to the user choices for full-funtionality.
 
+# Published URL
+
+https://bekind-rewind.github.io/password-generator/
+
+
 # Screenshot
 
 ![](develop/images/PG-img.png)
